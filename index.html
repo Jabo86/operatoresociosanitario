@@ -388,74 +388,50 @@
                 quizGrid.appendChild(quizCard);
             }
 
-            // Genera dinamicamente 50 container per il materiale teorico
+            // Genera dinamicamente i container per il materiale teorico
             const theoryGrid = document.getElementById('theory-grid');
             const theoryTopics = [
-                "Chi è l'OSS: Ruolo e Competenze",
-                "Sistema Sanitario Nazionale e Regionale",
-                "Normative per l'OSS: Leggi e Regolamenti",
-                "Etica e Deontologia Professionale",
-                "Assistenza di Base al Paziente",
-                "Sicurezza sul Lavoro: Prevenzione dei Rischi",
-                "Anatomia e Fisiologia del Corpo Umano",
-                "Apparato Cardiovascolare: Struttura e Funzioni",
-                "Apparato Respiratorio: Meccanismi e Patologie",
-                "Apparato Digerente: Digestione e Nutrizione",
-                "Apparato Muscolo-Scheletrico: Mobilità e Supporto",
-                "Apparato Nervoso: Funzioni e Assistenza",
-                "Apparato Urinario: Eliminazione e Patologie",
-                "Sistema Endocrino: Ormoni e Regolazione",
-                "Apparato Riproduttivo: Assistenza e Cura",
-                "Sistema Immunitario: Difese e Infezioni",
-                "Igiene Personale del Paziente",
-                "Prevenzione e Controllo delle Infezioni",
-                "Mobilizzazione e Trasferimento del Paziente",
-                "Primo Soccorso: Interventi di Base",
-                "Gestione dei Parametri Vitali",
-                "Assistenza nella Somministrazione dei Farmaci",
-                "Nutrizione e Idratazione: Diete Speciali",
-                "Cure Palliative e Assistenza al Fine Vita",
-                "Assistenza agli Anziani: Bisogni Specifici",
-                "Assistenza ai Disabili: Autonomia e Supporto",
-                "Comunicazione Efficace con il Paziente",
-                "Gestione dello Stress e Burnout",
-                "Lavoro in Team Multidisciplinare",
-                "Documentazione Sanitaria: Compilazione e Gestione",
-                "Diritti e Doveri del Paziente",
-                "Privacy e Trattamento dei Dati Sanitari",
-                "Assistenza Domiciliare: Organizzazione e Tecniche",
-                "Psicologia di Base: Relazione con il Paziente",
-                "Salute Mentale: Riconoscimento e Supporto",
-                "Gestione delle Emergenze Sanitarie",
-                "Uso e Manutenzione dei Dispositivi Medici",
-                "Igiene Ambientale: Pulizia e Sanificazione",
-                "Prevenzione delle Lesioni da Pressione",
-                "Assistenza Post-Operatoria: Recupero e Monitoraggio",
-                "Educazione Sanitaria per Pazienti e Familiari",
-                "Gestione dei Rifiuti Sanitari",
-                "Tecniche di Riabilitazione di Base",
-                "Assistenza in Strutture Residenziali (RSA)",
-                "Monitoraggio e Gestione del Dolore",
-                "Assistenza ai Bambini: Bisogni Pediatrici",
-                "Tecniche di Sterilizzazione degli Strumenti",
-                "Legislazione Sanitaria: Norme Regionali",
-                "Formazione Continua e Aggiornamento",
-                "Gestione delle Medicazioni e Ferite"
+                { title: "Chi è l'OSS: Ruolo e Competenze", link: "https://jabo86.github.io/L-OPERATORE-SOCIO-SANITARIO/" },
+                { title: "Sistema Sanitario Nazionale e Regionale", link: "https://jabo86.github.io/ssnssr/" },
+                { title: "Igiene Personale del Paziente", link: "https://jabo86.github.io/lavaggiomani/" },
+                { title: "Sicurezza sul Lavoro", link: "https://jabo86.github.io/figure-sicurezza-sul-lavoro/" },
+                { title: "Gestione dei Rifiuti Sanitari", link: "https://jabo86.github.io/i-rifiuti/" },
+                { title: "Prevenzione delle Lesioni da Pressione", link: "https://jabo86.github.io/lesioni-da-decubito/" },
+                { title: "Uso e Manutenzione dei Dispositivi Medici", link: "https://jabo86.github.io/ausili-e-presidi/" },
+                { title: "Momento del Ricovero", link: "https://jabo86.github.io/momento-del-ricovero/" },
+                { title: "Tecniche di Sterilizzazione", link: "https://jabo86.github.io/sterilizzazione/" },
+                { title: "Rischi per l'OSS", link: "https://jabo86.github.io/rischio-per-l-oss/" },
+                { title: "Corpo Umano", link: "https://jabo86.github.io/corpo-umano/" },
+                { title: "Sistema Endocrino", link: "https://jabo86.github.io/sistema-endocrino/" },
+                { title: "Sistema Immunitario", link: "https://jabo86.github.io/sistema-immunitario/" },
+                { title: "Sistema Linfatico", link: "https://jabo86.github.io/sistema-linfatico/" },
+                { title: "Sistema Muscolare", link: "https://jabo86.github.io/sistema-muscolare/" },
+                { title: "Sistema Nervoso", link: "https://jabo86.github.io/sistema-nervoso/" },
+                { title: "Sistema Scheletrico", link: "https://jabo86.github.io/sistema-scheletrico/" },
+                { title: "Apparato Articolare", link: "https://jabo86.github.io/apparato-articolare/" },
+                { title: "Apparato Circolatorio", link: "https://jabo86.github.io/apparato-circolatorio/" },
+                { title: "Apparato Digerente", link: "https://jabo86.github.io/apparato-digerente/" },
+                { title: "Apparato Respiratorio", link: "https://jabo86.github.io/apparato-respiratorio/" },
+                { title: "Apparato Riproduttivo", link: "https://jabo86.github.io/apparato-riproduttivo/" },
+                { title: "Apparato Tegumentario", link: "https://jabo86.github.io/apparato-tegumentario/" },
+                { title: "Apparato Urinario", link: "https://jabo86.github.io/apparato-urinario/" },
+                { title: "Il Cuore", link: "https://jabo86.github.io/il-cuore/" },
+                { title: "Il Sangue", link: "https://jabo86.github.io/il-sangue/" },
+                { title: "Midollo Spinale", link: "https://jabo86.github.io/midollo-spinale/" },
+                { title: "Il Cervello", link: "https://jabo86.github.io/il-cervello/" }
             ];
 
-            for (let i = 0; i < 50; i++) {
+            theoryTopics.forEach(topic => {
                 const theoryCard = document.createElement('div');
                 theoryCard.className = 'resource-card';
-                const topic = theoryTopics[i];
-                const link = i < 2 ? (i === 0 ? 'https://jabo86.github.io/L-OPERATORE-SOCIO-SANITARIO/' : 'https://jabo86.github.io/ssnssr/') : '#';
                 theoryCard.innerHTML = `
-                    <a href="${link}" target="_blank">
+                    <a href="${topic.link}" target="_blank">
                         <i class="fas fa-file-alt" style="font-size: 1.2rem; margin-bottom: 5px;"></i>
-                        ${topic}
+                        ${topic.title}
                     </a>
                 `;
                 theoryGrid.appendChild(theoryCard);
-            }
+            });
 
             document.addEventListener('backbutton', handleBackButton, false);
         });
