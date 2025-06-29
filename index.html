@@ -6,7 +6,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Quiz OSS - Preparazione Operatori Socio Sanitari</title>
+    <title>Tutto OSS - Preparazione Operatori Socio Sanitari</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="manifest" href="/manifest.json">
@@ -18,6 +18,7 @@
             --dark: #1a1a2e;
             --light: #f8f9fa;
             --success: #4CAF50;
+            --expired: #ff4d4d; /* Colore rosso per la scritta "Scaduto" */
         }
 
         * {
@@ -229,7 +230,7 @@
         }
 
         .resource-card a {
-            color: var(--light);
+            color: var(--light); /* Testo bianco per il titolo */
             text-decoration: none;
             font-weight: 500;
             font-size: 0.9rem;
@@ -237,6 +238,20 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
+        }
+
+        .resource-card .concorso-details {
+            color: var(--light); /* Testo bianco per i dettagli */
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 0.3rem;
+        }
+
+        .resource-card .expired {
+            color: var(--expired); /* Colore rosso per la scritta "Scaduto" */
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
         }
 
         footer {
@@ -280,7 +295,7 @@
         <header>
             <div class="logo">
                 <i class="fas fa-hand-holding-medical"></i>
-                <span class="logo-text">Quiz OSS</span>
+                <span class="logo-text">Tutto OSS</span>
             </div>
             <a class="back-button hidden" onclick="showSection('home')">
                 <i class="fas fa-arrow-left"></i>
@@ -289,7 +304,7 @@
         
         <section id="home-section" class="hero">
             <h1>Preparati al Concorso OSS</h1>
-            <p>Quiz professionali per Operatori Socio Sanitari. Accedi a tutti i quiz liberamente!</p>
+            <p>Quiz professionali e materiale teorico per Operatori Socio Sanitari.<p>  Resta aggiornato sui concorsi OSS per non perdere nessuna opportunità.</p>
             
             <div class="main-buttons">
                 <button class="cta-button" onclick="showSection('teoria')">
@@ -297,6 +312,9 @@
                 </button>
                 <button class="cta-button secondary" onclick="showSection('quiz')">
                     <i class="fas fa-play"></i> Inizia il Quiz
+                </button>
+                <button class="cta-button secondary" onclick="showSection('concorsi')">
+                    <i class="fas fa-briefcase"></i> Concorsi OSS
                 </button>
             </div>
         </section>
@@ -348,10 +366,17 @@
                 <!-- Quiz da 3 a 50 generati dinamicamente -->
             </div>
         </section>
+
+        <section id="concorsi-section" class="resources hidden">
+            <h2>Concorsi OSS</h2>
+            <div class="resource-grid" id="concorsi-grid">
+                <!-- I container saranno generati dinamicamente via JavaScript -->
+            </div>
+        </section>
     </div>
     
     <footer>
-        <p>© 2025 Quiz OSS - Tutti i diritti riservati</p>
+        <p>© 2025 Tutto OSS - Tutti i diritti riservati</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -433,11 +458,40 @@
                 theoryGrid.appendChild(theoryCard);
             });
 
+            // Genera dinamicamente i container per i concorsi
+            const concorsiGrid = document.getElementById('concorsi-grid');
+            const currentDate = new Date('2025-06-29T15:02:00+02:00'); // Data corrente (29 giugno 2025, 15:02 CEST)
+            const concorsiList = [
+                { 
+                    title: "Concorso OSS ASST Brianza 15 posti", 
+                    posti: "15 posti", 
+                    scadenza: "26 giugno 2025 ore 23:59", 
+                    scadenzaDate: new Date('2025-06-26T23:59:00+02:00'), 
+                    link: "https://asst-brianza.iscrizioneconcorsi.it/" 
+                },                               
+            ];
+
+            concorsiList.forEach(concorso => {
+                const concorsoCard = document.createElement('div');
+                concorsoCard.className = 'resource-card';
+                const isExpired = concorso.scadenzaDate < currentDate;
+                concorsoCard.innerHTML = `
+                    <a href="${concorso.link}" target="_blank">
+                        <i class="fas fa-briefcase" style="font-size: 1.2rem; margin-bottom: 5px;"></i>
+                        ${concorso.title}
+                        <div class="concorso-details">Posti: ${concorso.posti}</div>
+                        <div class="concorso-details">Scadenza: ${concorso.scadenza}</div>
+                        ${isExpired ? '<div class="expired">Scaduto</div>' : ''}
+                    </a>
+                `;
+                concorsiGrid.appendChild(concorsoCard);
+            });
+
             document.addEventListener('backbutton', handleBackButton, false);
         });
 
         function showSection(section) {
-            const sections = ['home', 'teoria', 'quiz'];
+            const sections = ['home', 'teoria', 'quiz', 'concorsi'];
             sections.forEach(sec => {
                 const el = document.getElementById(`${sec}-section`);
                 if (sec === section) {
@@ -453,7 +507,7 @@
         }
 
         function handleBackButton() {
-            const visibleSection = ['teoria', 'quiz'].find(sec => 
+            const visibleSection = ['teoria', 'quiz', 'concorsi'].find(sec => 
                 !document.getElementById(`${sec}-section`).classList.contains('hidden'));
             if (visibleSection) {
                 showSection('home');
